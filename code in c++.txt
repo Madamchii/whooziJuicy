@@ -1,0 +1,159 @@
+#include <iostream>
+
+class Person
+{
+public:
+    Person();
+    void setLetter(char letter);
+    char getLetter();
+    void setAge(int age);
+    int getAge();
+    void setAllowed(bool allowed);
+    bool isAllowed();
+
+private:
+    char letter;
+    int age;
+    bool allowed;
+};
+
+Person::Person()
+{
+    age = 0;
+    allowed = false;
+}
+
+void Person::setLetter(char letter)
+{
+    this->letter = letter;
+}
+
+char Person::getLetter()
+{
+    return letter;
+}
+
+void Person::setAge(int age)
+{
+    this->age = age;
+}
+
+int Person::getAge()
+{
+    return age;
+}
+
+void Person::setAllowed(bool allowed)
+{
+    this->allowed = allowed;
+}
+
+bool Person::isAllowed()
+{
+    return allowed;
+}
+
+class WhooziJuicy
+{
+public:
+    WhooziJuicy();
+    void processEntryRules();
+    void calculateQ24Age(); // not sure about this, from Q2
+
+private:
+    Person people[20];
+    int numPeople;
+    void input();
+
+    void checkIfValid();
+    void sortOldest();
+};
+
+WhooziJuicy::WhooziJuicy()
+{
+    numPeople = 0;
+}
+
+void WhooziJuicy::processEntryRules()
+{
+    // Get input here
+    input();
+    checkIfValid();
+    sortOldest();
+    
+    for(int i = 0; i < numPeople; i++)
+    {
+        // Print array of people. Will be in order to let older people in first.
+        // Next to each person, print whether they are allowed in or not and why
+    }
+}
+
+void WhooziJuicy::calculateQ24Age()
+{
+    // find Q24 and calculate age
+    for(int i = 0; i < numPeople; i++)
+    {
+        if(people[i].getLetter() == "Q")
+            
+    }
+}
+
+void WhooziJuicy::input()
+{
+    // Enter people standing in queue. you need to seperate letter from age
+
+    // one way is using a menu to get 1 person at a time which is probably best
+    // Other way is to ask how many people there are then enter all of them at once
+
+    // Error checking
+    if(numPeople >= 20)
+    {
+        std::cout << "Club full" << std::endl;
+        return;
+    }
+}
+
+void WhooziJuicy::checkIfValid()
+{
+    for(int i = 0; i < numPeople; i++)
+    {
+        if(age >= 18 && age < 90)
+            people[i].setAllowed(true);
+        else
+            people[i].setAllowed(false);
+    }
+}
+
+void WhooziJuicy::sortOldest()
+{
+    // Sort oldest to youngest
+    int oldest;
+
+    for(int i = 0; i < numPeople; i++)
+    {
+        for(int j = i; j < numPeople; j++)
+        {
+            if(people[j] > oldest)
+            {
+                // swap oldest with first
+                Person temp;
+                temp = people[i];
+                people[i] = people[j];
+                people[j] = temp;
+                // in python, a swap can be done just by doing this if I remember correctly:
+                // people[i], people[j] = people[j], people[i]
+            }
+        }
+    }
+}
+
+int main()
+{
+    std::cout << "Hello world" << std::endl;
+    WhooziJuicy club;
+
+    club.processEntryRules();
+    club.calculateQ24Age();
+
+    return 0;
+}
